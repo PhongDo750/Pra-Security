@@ -1,8 +1,16 @@
 server:
   port: 8443
-  http2:
-    enabled: true
-  ssl:
-    key-store: classpath:keystore.p12
-    key-store-password: phonggda123
-    key-store-type: PKCS12
+#  http2:
+#    enabled: true
+#  ssl:
+#    key-store: classpath:keystore.p12
+#    key-store-password: phonggda123
+#    key-store-type: PKCS12
+
+open:
+    api:
+      title: API document
+      version: v1.0.0
+      description : Description API service
+      serverUrl : http://localhost:8443
+      serverName : server test

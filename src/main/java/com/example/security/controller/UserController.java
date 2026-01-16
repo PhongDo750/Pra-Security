@@ -7,6 +7,8 @@ import com.example.security.dto.response.TokenResponse;
 import com.example.security.dto.response.UserOutputV2;
 import com.example.security.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor
 @RestController
 @RequestMapping("/api/v1/users")
+@Tag(name = "User Controller")
 public class UserController {
     private final UserService userService;
 
@@ -40,7 +43,8 @@ public class UserController {
     @Operation(summary = "Lấy thông tin cá nhân")
     @GetMapping
     @PreAuthorize("hasRole('USER')")
-    public ApiResponse<UserOutputV2> getUserInformation(@RequestHeader("Authorization") String accessToken){
+    public ApiResponse<UserOutputV2> getUserInformation(HttpServletRequest request){
+        String accessToken = request.getHeader("Authorization");
         return userService.getUserInformation(accessToken);
     }
 }
